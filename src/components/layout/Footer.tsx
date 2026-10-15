@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import { CurrentYear } from "@/components/ui/CurrentYear";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/whatsapp";
 
 /* ============================================================
@@ -50,18 +51,10 @@ const CONTACT = {
 };
 
 /* ============================================================
-   PROPS
-   ============================================================ */
-
-interface FooterProps {
-  currentYear: number;
-}
-
-/* ============================================================
    COMPOSANT
    ============================================================ */
 
-export function Footer({ currentYear }: FooterProps) {
+export function Footer() {
   const [email, setEmail] = React.useState("");
   const [submitted, setSubmitted] = React.useState(false);
 
@@ -251,7 +244,7 @@ export function Footer({ currentYear }: FooterProps) {
         {/* ===== BOTTOM BAR ===== */}
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
           <p className="text-xs text-ag-subtle">
-            © {currentYear} AFRO GROUPE. Tous droits réservés.
+            © <CurrentYear /> AFRO GROUPE. Tous droits réservés.
           </p>
           <div className="flex items-center gap-5 text-xs text-ag-subtle">
             <Link href="/mentions-legales" className="hover:text-ag-ink transition-colors">
