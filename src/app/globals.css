@@ -1,26 +1,202 @@
 @import "tailwindcss";
 
+/* ============================================================
+   AFRO GROUPE — DESIGN SYSTEM
+   Charte : Deep Blue (#0B132B, #0F172A) + Néon Green (#10B981, #22C55E)
+   ============================================================ */
+
+@theme {
+  /* ---------- COULEURS DE MARQUE ---------- */
+  --color-ag-deep-950: #050a18;
+  --color-ag-deep-900: #0B132B;
+  --color-ag-deep-800: #0F172A;
+  --color-ag-deep-700: #16203d;
+  --color-ag-deep-600: #1e2a4f;
+
+  --color-ag-neon-400: #22C55E;
+  --color-ag-neon-500: #10B981;
+  --color-ag-neon-600: #059669;
+
+  --color-ag-glow: #34d399;
+  --color-ag-accent: #a7f3d0;
+
+  /* ---------- NEUTRES ---------- */
+  --color-ag-ink: #f8fafc;
+  --color-ag-muted: #94a3b8;
+  --color-ag-subtle: #64748b;
+
+  /* ---------- FONTS ---------- */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* ---------- RADIUS (Rounded Banger) ---------- */
+  --radius-pill: 9999px;
+  --radius-banger: 2rem;        /* 32px → rounded-3xl+ */
+  --radius-banger-lg: 2.5rem;   /* 40px → footer */
+
+  /* ---------- OMBRES PREMIUM ---------- */
+  --shadow-glow: 0 0 40px -10px rgba(16, 185, 129, 0.5);
+  --shadow-glow-lg: 0 0 80px -20px rgba(34, 197, 94, 0.6);
+  --shadow-card: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+
+  /* ---------- ANIMATIONS ---------- */
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+/* ============================================================
+   VARIABLES GLOBALES
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ag-bg: #050a18;
+  --ag-bg-elevated: #0B132B;
+  --ag-border: rgba(255, 255, 255, 0.08);
+  --ag-border-hover: rgba(16, 185, 129, 0.4);
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ============================================================
+   BASE
+   ============================================================ */
+* {
+  border-color: var(--ag-border);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--ag-bg);
+  color: var(--color-ag-ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(34, 197, 94, 0.08), transparent);
+  background-attachment: fixed;
+}
+
+/* ============================================================
+   SÉLECTION & SCROLLBAR
+   ============================================================ */
+::selection {
+  background: var(--color-ag-neon-500);
+  color: var(--color-ag-deep-900);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ag-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-ag-neon-500), var(--color-ag-neon-600));
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--ag-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ag-neon-400);
+}
+
+/* ============================================================
+   UTILITAIRES CUSTOM
+   ============================================================ */
+
+/* Texte gradient Néon */
+@utility text-gradient-neon {
+  background: linear-gradient(135deg, #34d399 0%, #10B981 50%, #22C55E 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Texte gradient Blanc → Muted */
+@utility text-gradient-soft {
+  background: linear-gradient(180deg, #f8fafc 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Glass card */
+@utility glass {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--ag-border);
+}
+
+@utility glass-strong {
+  background: rgba(11, 19, 43, 0.85);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Bordure gradient néon */
+@utility border-glow {
+  position: relative;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+@utility border-glow {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.6), rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.6));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+/* Halo néon */
+@utility glow-neon {
+  box-shadow: var(--shadow-glow);
+}
+@utility glow-neon-lg {
+  box-shadow: var(--shadow-glow-lg);
+}
+
+/* Grille de fond subtile */
+@utility bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Noise texture premium */
+@utility bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.4); }
+  50%      { box-shadow: 0 0 50px -5px rgba(34, 197, 94, 0.7); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
 }
