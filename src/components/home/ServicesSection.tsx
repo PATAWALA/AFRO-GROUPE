@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa";
 import type { IconType } from "react-icons";
 import { motion } from "framer-motion";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { services } from "@/data/services";
 import { cn } from "@/lib/utils";
 
@@ -46,7 +47,6 @@ export function ServicesSection() {
       className="relative scroll-mt-24 bg-ag-offwhite py-16 sm:py-24 lg:py-32"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {/* ==== EN-TÊTE ==== */}
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-ag-gold-100 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-ag-gold-500 sm:text-xs">
             Nos Services
@@ -61,7 +61,6 @@ export function ServicesSection() {
           </p>
         </div>
 
-        {/* ==== GRILLE ==== */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -76,49 +75,63 @@ export function ServicesSection() {
                 <Link
                   href={`/services#${service.slug}`}
                   className={cn(
-                    "group relative flex h-full flex-col rounded-2xl bg-white p-5 shadow-card border border-ag-navy-900/5 transition-all duration-300 sm:rounded-3xl sm:p-6",
+                    "group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-card border border-ag-navy-900/5 transition-all duration-300 sm:rounded-3xl",
                     "hover:-translate-y-1 hover:shadow-blue-lg hover:border-ag-blue-500/30",
                     service.highlighted && "ring-2 ring-ag-gold-400 ring-offset-2"
                   )}
                 >
-                  {service.highlighted && (
-                    <span className="absolute -top-3 right-5 rounded-full bg-ag-gold-500 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-white shadow-md sm:text-[10px]">
-                      Populaire
-                    </span>
-                  )}
+                  {/* IMAGE */}
+                  <div className="relative h-40 overflow-hidden sm:h-44">
+                    <ImageWithFallback
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ag-navy-900/50 to-transparent" />
 
-                  {/* Icône */}
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-ag-blue-100 text-ag-blue-500 transition-all duration-300 group-hover:bg-ag-blue-500 group-hover:text-white group-hover:scale-105 sm:h-14 sm:w-14">
-                    <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
+                    {service.highlighted && (
+                      <span className="absolute right-4 top-4 rounded-full bg-ag-gold-500 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-white shadow-md sm:text-[10px]">
+                        Populaire
+                      </span>
+                    )}
+
+                    <div className="absolute bottom-4 left-4 flex h-10 w-10 items-center justify-center rounded-xl bg-white text-ag-blue-500 shadow-md sm:h-12 sm:w-12">
+                      <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
+                    </div>
                   </div>
 
-                  <h3 className="mt-4 text-base font-bold text-ag-navy-900 sm:mt-5 sm:text-lg">
-                    {service.title}
-                  </h3>
+                  {/* Contenu */}
+                  <div className="flex flex-1 flex-col p-5 sm:p-6">
+                    <h3 className="text-base font-bold text-ag-navy-900 sm:text-lg">
+                      {service.title}
+                    </h3>
 
-                  <p className="mt-2 text-xs leading-relaxed text-ag-body sm:text-sm">
-                    {service.shortDescription}
-                  </p>
+                    <p className="mt-2 text-xs leading-relaxed text-ag-body sm:text-sm">
+                      {service.shortDescription}
+                    </p>
 
-                  <ul className="mt-3 space-y-1.5 sm:mt-4">
-                    {service.features.slice(0, 2).map((f) => (
-                      <li
-                        key={f}
-                        className="flex items-center gap-2 text-[11px] text-ag-muted sm:text-xs"
-                      >
-                        <span className="h-1 w-1 rounded-full bg-ag-blue-500" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
+                    <ul className="mt-3 space-y-1.5 sm:mt-4">
+                      {service.features.slice(0, 2).map((f) => (
+                        <li
+                          key={f}
+                          className="flex items-center gap-2 text-[11px] text-ag-muted sm:text-xs"
+                        >
+                          <span className="h-1 w-1 rounded-full bg-ag-blue-500" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
 
-                  <div className="mt-auto flex items-center justify-between pt-5 sm:pt-6">
-                    <span className="text-[11px] font-bold text-ag-blue-500 sm:text-xs">
-                      {service.price}
-                    </span>
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ag-blue-100 text-ag-blue-500 transition-all duration-300 group-hover:bg-ag-blue-500 group-hover:text-white">
-                      <FaArrowRight className="h-3.5 w-3.5" />
-                    </span>
+                    <div className="mt-auto flex items-center justify-between pt-5 sm:pt-6">
+                      <span className="text-[11px] font-bold text-ag-blue-500 sm:text-xs">
+                        {service.price}
+                      </span>
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ag-blue-100 text-ag-blue-500 transition-all duration-300 group-hover:bg-ag-blue-500 group-hover:text-white">
+                        <FaArrowRight className="h-3.5 w-3.5" />
+                      </span>
+                    </div>
                   </div>
                 </Link>
               </motion.div>

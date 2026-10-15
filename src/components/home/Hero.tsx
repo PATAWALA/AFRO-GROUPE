@@ -10,15 +10,22 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/whatsapp";
 import { countries } from "@/data/countries";
 
+/* ============================================================
+   STATS
+   ============================================================ */
 const STATS = [
   { value: "5", label: "Pays hubs", icon: FaGlobe },
   { value: "500+", label: "Clients accompagnés", icon: FaStar },
   { value: "100%", label: "Achats sécurisés", icon: FaShieldAlt },
 ];
 
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -36,6 +43,9 @@ const itemVariants = {
   },
 };
 
+/* ============================================================
+   COMPOSANT
+   ============================================================ */
 export function Hero() {
   const whatsappHref = buildWhatsAppLink({
     message: WHATSAPP_MESSAGES.hero,
@@ -44,10 +54,31 @@ export function Hero() {
 
   return (
     <section className="relative isolate overflow-hidden pt-24 pb-14 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-28">
-      {/* ==== DÉCOR DE FOND ==== */}
+      {/* ============================================================
+          DÉCOR DE FOND — Image distante Unsplash + overlay + halos
+          ============================================================ */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        {/* Image de fond distante (port de conteneurs) */}
+        <ImageWithFallback
+          src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1920&q=80&auto=format&fit=crop"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-[0.08]"
+          fallbackGradient="from-ag-navy-900 to-ag-blue-500"
+        />
+
+        {/* Overlay blanc dégradé pour lisibilité */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/95 to-white" />
+
+        {/* Grille subtile */}
         <div className="absolute inset-0 bg-grid-light opacity-60" />
+
+        {/* Halo bleu central */}
         <div className="absolute left-1/2 top-20 h-[300px] w-[500px] -translate-x-1/2 rounded-full bg-ag-blue-300/30 blur-[120px] sm:h-[500px] sm:w-[800px]" />
+
+        {/* Halo doré droite */}
         <div className="absolute right-0 top-1/2 h-52 w-52 rounded-full bg-ag-gold-400/10 blur-[100px] sm:h-72 sm:w-72" />
       </div>
 
