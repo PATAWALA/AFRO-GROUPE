@@ -19,7 +19,7 @@ export const services: Service[] = [
     price: "À partir de 350 €",
     highlighted: true,
     image:
-      "https://images.unsplash.com/photo-1553413077-190dd305871c?w=1000&q=80",
+      "https://images.unsplash.com/photo-1553413077-190dd305871c?w=1000&q=80&auto=format&fit=crop",
   },
   {
     id: "svc-02",
@@ -38,7 +38,7 @@ export const services: Service[] = [
     ],
     price: "À partir de 199 €",
     image:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1000&q=80",
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1000&q=80&auto=format&fit=crop",
   },
   {
     id: "svc-03",
@@ -58,7 +58,7 @@ export const services: Service[] = [
     price: "Devis sur mesure",
     highlighted: true,
     image:
-      "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1000&q=80",
+      "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1000&q=80&auto=format&fit=crop",
   },
   {
     id: "svc-04",
@@ -77,7 +77,7 @@ export const services: Service[] = [
     ],
     price: "À partir de 899 €",
     image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1000&q=80",
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1000&q=80&auto=format&fit=crop",
   },
   {
     id: "svc-05",
@@ -96,7 +96,7 @@ export const services: Service[] = [
     ],
     price: "Sur devis",
     image:
-      "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1000&q=80",
+      "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1000&q=80&auto=format&fit=crop",
   },
   {
     id: "svc-06",
@@ -115,6 +115,6 @@ export const services: Service[] = [
     ],
     price: "À partir de 0,50 €/palette/jour",
     image:
-      "https://images.unsplash.com/photo-1553413077-190dd305871c?w=1000&q=80",
+      "https://images.unsplash.com/photo-1553413077-190dd305871c?w=1000&q=80&auto=format&fit=crop",
   },
 ];

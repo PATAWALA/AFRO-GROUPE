@@ -28,6 +28,7 @@ export interface Country {
   specialties: string[]; // Spécialités du hub
   stat: string;          // Chiffre clé (ex: "48h expédition")
   accentColor: string;   // Couleur d'accent du pays
+  image: string;         // 🆕 URL image (Unsplash ou locale)
 }
 
 /* ============================================================
@@ -40,10 +41,11 @@ export interface Service {
   title: string;
   shortDescription: string;
   longDescription: string;
-  icon: string;          // Nom d'icône lucide-react
+  icon: string;          // Nom d'icône react-icons
   features: string[];
   price?: string;        // Fourchette indicative
   highlighted?: boolean; // Mise en avant
+  image: string;         // 🆕 URL image
 }
 
 /* ============================================================
@@ -68,11 +70,11 @@ export interface Testimonial {
 export interface WhatsAppPayload {
   phone?: string;
   message: string;
-  context?: string;      // Ex: "hero", "service-sourcing"
+  context?: string;
 }
 
 export interface WhatsAppConfig {
-  phone: string;         // Format international sans "+"
+  phone: string;
   defaultMessage: string;
   businessName: string;
 }
@@ -100,4 +102,5 @@ export interface Formation {
   level: "Débutant" | "Intermédiaire" | "Avancé";
   modules: string[];
   icon: string;
+  image?: string;        // 🆕 URL image (optionnel)
 }

@@ -17,7 +17,7 @@ export const countries: Country[] = [
     stat: "48h pour un devis sourcing",
     accentColor: "#ef4444",
     image:
-      "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=1200&q=80",
+      "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=1200&q=80&auto=format&fit=crop",
   },
   {
     code: "TR",
@@ -35,7 +35,7 @@ export const countries: Country[] = [
     stat: "7 jours livraison UE",
     accentColor: "#dc2626",
     image:
-      "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1200&q=80",
+      "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1200&q=80&auto=format&fit=crop",
   },
   {
     code: "NG",
@@ -53,7 +53,7 @@ export const countries: Country[] = [
     stat: "Réseau 12 pays africains",
     accentColor: "#16a34a",
     image:
-      "https://images.unsplash.com/photo-1572957274438-7b1c62e5c4b8?w=1200&q=80",
+      "https://images.unsplash.com/photo-1572957274438-7b1c62e5c4b8?w=1200&q=80&auto=format&fit=crop",
   },
   {
     code: "AE",
@@ -71,7 +71,7 @@ export const countries: Country[] = [
     stat: "Zone franche 24/7",
     accentColor: "#0891b2",
     image:
-      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=80&auto=format&fit=crop",
   },
   {
     code: "FR",
@@ -89,6 +89,6 @@ export const countries: Country[] = [
     stat: "Support FR 6j/7",
     accentColor: "#2563eb",
     image:
-      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=80",
+      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=80&auto=format&fit=crop",
   },
 ];
