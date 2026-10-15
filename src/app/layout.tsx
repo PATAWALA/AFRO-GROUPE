@@ -43,7 +43,10 @@ export const metadata: Metadata = {
     description:
       "Vos achats sûrs et sécurisés en Chine, Turquie, Nigéria, Dubaï et France.",
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export const viewport: Viewport = {
@@ -55,12 +58,15 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  // Année calculée côté serveur (fix Next.js 16 unstable value)
+  const currentYear = new Date().getFullYear();
+
   return (
     <html lang="fr" className={inter.variable} suppressHydrationWarning>
       <body className="min-h-screen antialiased selection:bg-ag-neon-500 selection:text-ag-deep-900">
         <Navbar />
         <main className="relative">{children}</main>
-        <Footer />
+        <Footer currentYear={currentYear} />
         <WhatsAppFloating />
       </body>
     </html>
