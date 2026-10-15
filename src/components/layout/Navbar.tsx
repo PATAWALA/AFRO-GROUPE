@@ -49,7 +49,7 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 transition-all duration-500 sm:px-4 sm:pt-4",
+          "fixed inset-x-0 top-0 z-50 flex justify-center px-2 pt-2 transition-all duration-500 sm:px-4 sm:pt-4",
           scrolled && "sm:pt-3"
         )}
       >
@@ -57,20 +57,20 @@ export function Navbar() {
           className={cn(
             "flex w-full max-w-6xl items-center justify-between gap-2 rounded-full px-3 py-2 transition-all duration-500 sm:gap-4 sm:px-5 sm:py-2.5",
             scrolled || mobileOpen
-              ? "glass-blue shadow-card"
+              ? "bg-white/95 backdrop-blur-xl shadow-card border border-ag-navy-900/8"
               : "bg-white/90 backdrop-blur-md border border-ag-navy-900/5"
           )}
         >
-          {/* ===== LOGO ===== */}
+          {/* ===== LOGO + NOM (TOUJOURS VISIBLE) ===== */}
           <Link
             href="/"
-            className="flex items-center gap-2 sm:gap-2.5 shrink-0"
+            className="flex min-w-0 items-center gap-2 sm:gap-2.5 shrink-0"
             aria-label="AFRO GROUPE — Accueil"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-ag-blue-500 to-ag-navy-800 text-white font-bold text-xs sm:h-9 sm:w-9 sm:text-sm shadow-blue">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-ag-blue-500 to-ag-navy-800 text-[11px] font-bold text-white shadow-blue sm:h-9 sm:w-9 sm:text-sm">
               AG
             </span>
-            <span className="hidden text-sm font-bold tracking-tight text-ag-navy-900 xs:block sm:block">
+            <span className="text-[13px] font-extrabold tracking-tight text-ag-navy-900 sm:text-sm whitespace-nowrap">
               AFRO<span className="text-ag-blue-500"> GROUPE</span>
             </span>
           </Link>
@@ -110,12 +110,13 @@ export function Navbar() {
           </ul>
 
           {/* ===== ACTIONS ===== */}
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <a
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-gradient-to-br from-ag-blue-500 to-ag-navy-800 px-4 py-2 text-xs font-semibold text-white shadow-blue transition-transform hover:scale-105"
+              aria-label="Contacter sur WhatsApp"
+              className="hidden items-center gap-2 rounded-full bg-gradient-to-br from-ag-blue-500 to-ag-navy-800 px-4 py-2 text-xs font-semibold text-white shadow-blue transition-transform hover:scale-105 sm:inline-flex"
             >
               <FaWhatsapp className="h-3.5 w-3.5" />
               WhatsApp
@@ -148,17 +149,33 @@ export function Navbar() {
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-40 bg-white lg:hidden"
           >
-            <motion.ul
+            <motion.div
               initial="hidden"
               animate="visible"
               variants={{
                 hidden: {},
-                visible: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } },
+                visible: { transition: { staggerChildren: 0.06, delayChildren: 0.15 } },
               }}
               className="flex h-full flex-col items-center justify-center gap-5 px-6 pt-20"
             >
+              {/* Logo + nom dans le menu mobile */}
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 10 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                className="mb-4 flex items-center gap-3"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-ag-blue-500 to-ag-navy-800 text-sm font-bold text-white shadow-blue">
+                  AG
+                </span>
+                <span className="text-lg font-extrabold text-ag-navy-900">
+                  AFRO<span className="text-ag-blue-500"> GROUPE</span>
+                </span>
+              </motion.div>
+
               {NAV_ITEMS.map((item) => (
-                <motion.li
+                <motion.div
                   key={item.href}
                   variants={{
                     hidden: { opacity: 0, y: 20 },
@@ -172,10 +189,10 @@ export function Navbar() {
                   >
                     {item.label}
                   </Link>
-                </motion.li>
+                </motion.div>
               ))}
 
-              <motion.li
+              <motion.div
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0 },
@@ -192,8 +209,8 @@ export function Navbar() {
                   <FaWhatsapp className="h-4 w-4" />
                   Discuter sur WhatsApp
                 </a>
-              </motion.li>
-            </motion.ul>
+              </motion.div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
