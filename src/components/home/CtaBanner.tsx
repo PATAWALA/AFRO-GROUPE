@@ -13,7 +13,7 @@ export function CtaBanner() {
     const { default: confetti } = await import("canvas-confetti");
     setConfettiLoaded(true);
 
-    const colors = ["#10B981", "#22C55E", "#34d399", "#a7f3d0", "#ffffff"];
+    const colors = ["#3b5bdb", "#1a2b6d", "#f59e0b", "#fbbf24", "#ffffff"];
 
     confetti({
       particleCount: 120,
@@ -53,56 +53,54 @@ export function CtaBanner() {
   };
 
   return (
-    <section className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-6 sm:px-8">
+    <section className="relative py-16 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="relative overflow-hidden rounded-[40px] border border-ag-neon-500/20 bg-gradient-to-br from-ag-deep-800 via-ag-deep-900 to-ag-deep-950 p-10 sm:p-16"
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-ag-navy-900 via-ag-navy-800 to-ag-blue-500 p-6 sm:rounded-[40px] sm:p-10 lg:p-16"
         >
           <div aria-hidden className="pointer-events-none absolute inset-0">
-            <div className="absolute inset-0 bg-grid opacity-30" />
-            <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-ag-neon-500/20 blur-[100px]" />
-            <div className="absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-ag-neon-400/15 blur-[100px]" />
+            <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-ag-blue-300/20 blur-[100px] sm:h-72 sm:w-72" />
+            <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-ag-gold-400/15 blur-[100px] sm:h-72 sm:w-72" />
             <motion.div
               animate={{ y: [0, -14, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute right-12 top-12 h-3 w-3 rounded-full bg-ag-neon-400/60 shadow-glow"
+              className="absolute right-8 top-8 h-2 w-2 rounded-full bg-ag-gold-400 sm:right-12 sm:top-12 sm:h-3 sm:w-3"
             />
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute bottom-16 left-16 h-2 w-2 rounded-full bg-ag-neon-500/60 shadow-glow"
+              className="absolute bottom-10 left-8 h-1.5 w-1.5 rounded-full bg-ag-blue-300 sm:bottom-16 sm:left-16 sm:h-2 sm:w-2"
             />
           </div>
 
           <div className="relative mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-xs font-medium text-ag-neon-400">
-              <FaStar className="h-3.5 w-3.5" />
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-ag-gold-400 backdrop-blur-sm border border-white/20 sm:px-4 sm:py-2 sm:text-xs">
+              <FaStar className="h-3 w-3" />
               Prêt à démarrer ?
             </span>
 
-            <h2 className="mt-6 text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">
-              <span className="text-gradient-soft">Votre prochain succès</span>{" "}
-              <span className="text-gradient-neon">commence maintenant</span>
+            <h2 className="mt-5 text-2xl font-extrabold leading-tight tracking-tight text-white sm:mt-6 sm:text-4xl lg:text-5xl">
+              Votre prochain succès{" "}
+              <span className="text-gradient-gold">commence maintenant</span>
             </h2>
 
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ag-muted sm:text-lg">
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/80 sm:mt-5 sm:text-base lg:text-lg">
               Un expert AFRO GROUPE vous répond en moins de 2 heures sur WhatsApp.
               Devis gratuit, sans engagement.
             </p>
 
-            <p className="mt-4 text-sm italic text-ag-neon-400">
+            <p className="mt-3 text-xs italic text-ag-gold-400 sm:mt-4 sm:text-sm">
               « Chaque réussite commence par la volonté d&apos;essayer ! »
             </p>
 
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:items-center sm:justify-center">
               <Button
-                variant="neon"
+                variant="gold"
                 size="lg"
-                glow
                 onClick={fireConfetti}
                 icon={
                   confettiLoaded ? (
@@ -121,22 +119,23 @@ export function CtaBanner() {
                 variant="outline"
                 size="lg"
                 icon={<FaArrowRight className="h-4 w-4" />}
+                className="border-white text-white hover:bg-white hover:text-ag-navy-900"
               >
                 Explorer nos services
               </Button>
             </div>
 
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-ag-subtle">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] text-white/60 sm:mt-10 sm:gap-x-6 sm:text-xs">
               <span className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-ag-neon-500" />
+                <span className="h-1.5 w-1.5 rounded-full bg-ag-gold-400" />
                 Devis gratuit
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-ag-neon-500" />
+                <span className="h-1.5 w-1.5 rounded-full bg-ag-gold-400" />
                 Réponse en moins de 2h
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-ag-neon-500" />
+                <span className="h-1.5 w-1.5 rounded-full bg-ag-gold-400" />
                 Sans engagement
               </span>
             </div>

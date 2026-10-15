@@ -15,12 +15,18 @@ import { Button } from "@/components/ui/Button";
 import { services } from "@/data/services";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/whatsapp";
 
+/* ============================================================
+   METADATA
+   ============================================================ */
 export const metadata: Metadata = {
   title: "Nos Services",
   description:
     "Sourcing, inspection qualité, logistique, e-commerce, conformité et stockage sécurisé. Découvrez tous les services AFRO GROUPE.",
 };
 
+/* ============================================================
+   ICONS
+   ============================================================ */
 const ICONS: Record<string, IconType> = {
   Search: FaSearch,
   ShieldCheck: FaShieldAlt,
@@ -30,6 +36,9 @@ const ICONS: Record<string, IconType> = {
   Warehouse: FaWarehouse,
 };
 
+/* ============================================================
+   PAGE
+   ============================================================ */
 export default function ServicesPage() {
   const whatsappHref = buildWhatsAppLink({
     message: WHATSAPP_MESSAGES.cta,
@@ -38,40 +47,40 @@ export default function ServicesPage() {
 
   return (
     <>
-      <section className="relative isolate overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-20">
+      {/* ===== HERO SECONDAIRE ===== */}
+      <section className="relative isolate overflow-hidden pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pt-40 lg:pb-20">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-grid opacity-30" />
-          <div className="absolute left-1/2 top-24 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-ag-neon-500/10 blur-[120px]" />
+          <div className="absolute inset-0 bg-grid-light opacity-50" />
+          <div className="absolute left-1/2 top-20 h-[300px] w-[500px] -translate-x-1/2 rounded-full bg-ag-blue-300/30 blur-[120px] sm:h-[400px] sm:w-[700px]" />
         </div>
 
-        <div className="mx-auto max-w-6xl px-6 text-center sm:px-8">
-          <span className="inline-flex items-center gap-2 rounded-full glass px-3.5 py-1.5 text-xs font-medium text-ag-neon-400">
-            Nos services
+        <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
+          <span className="inline-flex items-center gap-2 rounded-full bg-ag-blue-100 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-ag-blue-500 sm:text-xs">
+            Nos Services
           </span>
-          <h1 className="mt-6 text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
-            <span className="text-gradient-soft">Des solutions</span>{" "}
-            <span className="text-gradient-neon">bout en bout</span>
+          <h1 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-ag-navy-900 sm:mt-6 sm:text-5xl lg:text-6xl">
+            Des solutions{" "}
+            <span className="text-gradient-blue">bout en bout</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-ag-muted sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-ag-body sm:mt-5 sm:text-base lg:text-lg">
             Six expertises complémentaires pour sécuriser, optimiser et
             accélérer votre commerce international.
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-7 flex flex-col items-stretch justify-center gap-3 sm:mt-8 sm:flex-row sm:items-center">
             <Button
               as="a"
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              variant="neon"
+              variant="primary"
               size="lg"
-              glow
               icon={<FaWhatsapp className="h-4 w-4" />}
             >
               Discuter avec un expert
             </Button>
             <Button
               as="a"
-              href="/#services"
+              href="/"
               variant="outline"
               size="lg"
               icon={<FaArrowRight className="h-4 w-4" />}
@@ -82,9 +91,10 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="relative pb-24 sm:pb-32">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8">
-          <div className="space-y-6">
+      {/* ===== LISTE DES SERVICES ===== */}
+      <section className="relative bg-ag-offwhite pb-16 sm:pb-24 lg:pb-32">
+        <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-6 sm:pt-12 lg:px-8">
+          <div className="space-y-5 sm:space-y-6">
             {services.map((service, i) => {
               const Icon = ICONS[service.icon] ?? FaSearch;
               const isReversed = i % 2 === 1;
@@ -93,39 +103,40 @@ export default function ServicesPage() {
                 <article
                   key={service.id}
                   id={service.slug}
-                  className="scroll-mt-28 rounded-3xl glass p-8 transition-colors hover:border-ag-neon-500/30 sm:p-12"
+                  className="scroll-mt-24 rounded-2xl bg-white p-5 shadow-card border border-ag-navy-900/5 transition-shadow hover:shadow-blue-lg sm:scroll-mt-28 sm:rounded-3xl sm:p-8 lg:p-12"
                 >
                   <div
-                    className={`grid gap-8 lg:grid-cols-2 lg:items-center ${
+                    className={`grid gap-6 sm:gap-8 lg:grid-cols-2 lg:items-center ${
                       isReversed ? "lg:[&>*:first-child]:order-2" : ""
                     }`}
                   >
+                    {/* ==== Colonne Info ==== */}
                     <div>
-                      <div className="flex items-center gap-4">
-                        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-ag-neon-500/10 text-ag-neon-400">
-                          <Icon className="h-6 w-6" />
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-ag-blue-100 text-ag-blue-500 sm:h-14 sm:w-14">
+                          <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                         </div>
                         <div>
-                          <span className="text-xs font-medium uppercase tracking-wider text-ag-neon-400">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-ag-gold-500 sm:text-xs">
                             Service {String(i + 1).padStart(2, "0")}
                           </span>
-                          <h2 className="text-2xl font-semibold text-ag-ink sm:text-3xl">
+                          <h2 className="text-xl font-extrabold text-ag-navy-900 sm:text-2xl lg:text-3xl">
                             {service.title}
                           </h2>
                         </div>
                       </div>
 
-                      <p className="mt-6 text-base leading-relaxed text-ag-muted">
+                      <p className="mt-4 text-sm leading-relaxed text-ag-body sm:mt-6 sm:text-base">
                         {service.longDescription}
                       </p>
 
                       {service.price && (
-                        <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-ag-neon-500/10 border border-ag-neon-500/20 px-4 py-2 text-sm font-medium text-ag-neon-400">
+                        <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-ag-gold-100 px-3.5 py-1.5 text-xs font-bold text-ag-gold-500 sm:mt-6 sm:px-4 sm:py-2 sm:text-sm">
                           💰 {service.price}
                         </div>
                       )}
 
-                      <div className="mt-8">
+                      <div className="mt-6 sm:mt-8">
                         <Button
                           as="a"
                           href={buildWhatsAppLink({
@@ -134,7 +145,7 @@ export default function ServicesPage() {
                           })}
                           target="_blank"
                           rel="noopener noreferrer"
-                          variant="neon"
+                          variant="primary"
                           size="md"
                           icon={<FaWhatsapp className="h-4 w-4" />}
                         >
@@ -143,18 +154,19 @@ export default function ServicesPage() {
                       </div>
                     </div>
 
-                    <div className="rounded-3xl border border-white/10 bg-ag-deep-900/40 p-6 sm:p-8">
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-ag-neon-400">
+                    {/* ==== Colonne Features ==== */}
+                    <div className="rounded-2xl bg-ag-offwhite p-5 sm:rounded-3xl sm:p-8">
+                      <h3 className="text-[10px] font-bold uppercase tracking-wider text-ag-blue-500 sm:text-xs">
                         Ce qui est inclus
                       </h3>
-                      <ul className="mt-5 space-y-4">
+                      <ul className="mt-4 space-y-3 sm:mt-5 sm:space-y-4">
                         {service.features.map((feature) => (
                           <li
                             key={feature}
-                            className="flex items-start gap-3 text-sm text-ag-ink"
+                            className="flex items-start gap-3 text-xs text-ag-navy-900 sm:text-sm"
                           >
-                            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ag-neon-500/15 text-ag-neon-400">
-                              <FaCheck className="h-3.5 w-3.5" />
+                            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ag-blue-500 text-white sm:h-6 sm:w-6">
+                              <FaCheck className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                             </span>
                             {feature}
                           </li>
@@ -169,30 +181,30 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="relative pb-24 sm:pb-32">
-        <div className="mx-auto max-w-4xl px-6 sm:px-8">
-          <div className="relative overflow-hidden rounded-[40px] border border-ag-neon-500/20 bg-gradient-to-br from-ag-deep-800 via-ag-deep-900 to-ag-deep-950 p-10 text-center sm:p-14">
+      {/* ===== CTA FINAL ===== */}
+      <section className="relative py-16 sm:py-24 lg:py-32">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-ag-navy-900 via-ag-navy-800 to-ag-blue-500 p-6 text-center sm:rounded-[40px] sm:p-10 lg:p-14">
             <div
               aria-hidden
-              className="pointer-events-none absolute -top-20 left-1/2 h-64 w-[500px] -translate-x-1/2 rounded-full bg-ag-neon-500/15 blur-[100px]"
+              className="pointer-events-none absolute -top-20 left-1/2 h-52 w-96 -translate-x-1/2 rounded-full bg-ag-gold-400/15 blur-[100px] sm:h-64 sm:w-[500px]"
             />
-            <h2 className="relative text-3xl font-semibold tracking-tight sm:text-4xl">
-              <span className="text-gradient-soft">Une question ?</span>{" "}
-              <span className="text-gradient-neon">Parlons-en.</span>
+            <h2 className="relative text-2xl font-extrabold tracking-tight text-white sm:text-3xl lg:text-4xl">
+              Une question ?{" "}
+              <span className="text-gradient-gold">Parlons-en.</span>
             </h2>
-            <p className="relative mx-auto mt-4 max-w-xl text-base text-ag-muted">
+            <p className="relative mx-auto mt-3 max-w-xl text-sm text-white/80 sm:mt-4 sm:text-base">
               Un expert vous répond en moins de 2h sur WhatsApp. Devis gratuit,
               sans engagement.
             </p>
-            <div className="relative mt-8 flex justify-center">
+            <div className="relative mt-7 flex justify-center sm:mt-8">
               <Button
                 as="a"
                 href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                variant="neon"
+                variant="gold"
                 size="lg"
-                glow
                 icon={<FaWhatsapp className="h-4 w-4" />}
               >
                 Contacter AFRO GROUPE
