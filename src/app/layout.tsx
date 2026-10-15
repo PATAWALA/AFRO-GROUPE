@@ -5,6 +5,9 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloating } from "@/components/ui/WhatsAppFloating";
 
+// ⬇️ Force le rendu dynamique (bypass le prerender statique)
+export const dynamic = "force-dynamic";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -58,7 +61,6 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  // Année calculée côté serveur (fix Next.js 16 unstable value)
   const currentYear = new Date().getFullYear();
 
   return (
