@@ -16,6 +16,10 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/whatsapp";
 
+/* ============================================================
+   DONNÉES
+   ============================================================ */
+
 const FOOTER_LINKS = {
   services: [
     { label: "Sourcing Produits", href: "/services#sourcing-produits" },
@@ -45,7 +49,19 @@ const CONTACT = {
   address: "Paris · Lagos · Dubaï · Guangzhou · Istanbul",
 };
 
-export function Footer() {
+/* ============================================================
+   PROPS
+   ============================================================ */
+
+interface FooterProps {
+  currentYear: number;
+}
+
+/* ============================================================
+   COMPOSANT
+   ============================================================ */
+
+export function Footer({ currentYear }: FooterProps) {
   const [email, setEmail] = React.useState("");
   const [submitted, setSubmitted] = React.useState(false);
 
@@ -74,6 +90,7 @@ export function Footer() {
 
       <div className="relative mx-auto max-w-6xl px-6 pt-16 pb-8 sm:px-8 sm:pt-20">
         <div className="grid gap-12 lg:grid-cols-12">
+          {/* --- Colonne Marque --- */}
           <div className="lg:col-span-4">
             <Link href="/" className="inline-flex items-center gap-3">
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-ag-neon-400 to-ag-neon-600 text-ag-deep-900 font-bold shadow-glow">
@@ -110,6 +127,7 @@ export function Footer() {
             </div>
           </div>
 
+          {/* --- Colonne Services --- */}
           <div className="lg:col-span-3">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-ag-neon-400">
               Services
@@ -128,6 +146,7 @@ export function Footer() {
             </ul>
           </div>
 
+          {/* --- Colonne Formations --- */}
           <div className="lg:col-span-2">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-ag-neon-400">
               Formations
@@ -146,6 +165,7 @@ export function Footer() {
             </ul>
           </div>
 
+          {/* --- Colonne Contact + Newsletter --- */}
           <div className="lg:col-span-3">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-ag-neon-400">
               Contact
@@ -176,6 +196,7 @@ export function Footer() {
               </li>
             </ul>
 
+            {/* Newsletter */}
             <form onSubmit={handleSubmit} className="mt-6">
               <label
                 htmlFor="newsletter-email"
@@ -227,9 +248,10 @@ export function Footer() {
           </div>
         </div>
 
+        {/* ===== BOTTOM BAR ===== */}
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
           <p className="text-xs text-ag-subtle">
-            © {new Date().getFullYear()} AFRO GROUPE. Tous droits réservés.
+            © {currentYear} AFRO GROUPE. Tous droits réservés.
           </p>
           <div className="flex items-center gap-5 text-xs text-ag-subtle">
             <Link href="/mentions-legales" className="hover:text-ag-ink transition-colors">
