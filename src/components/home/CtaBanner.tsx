@@ -1,25 +1,20 @@
 "use client";
 
 import * as React from "react";
-import { MessageCircle, Sparkles, ArrowRight } from "lucide-react";
+import { FaWhatsapp, FaStar, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/whatsapp";
 
-/* ============================================================
-   COMPOSANT
-   ============================================================ */
 export function CtaBanner() {
   const [confettiLoaded, setConfettiLoaded] = React.useState(false);
 
-  /* Lazy-load canvas-confetti (évite de gonfler le bundle initial) */
   const fireConfetti = async () => {
     const { default: confetti } = await import("canvas-confetti");
     setConfettiLoaded(true);
 
     const colors = ["#10B981", "#22C55E", "#34d399", "#a7f3d0", "#ffffff"];
 
-    // Explosion centrale
     confetti({
       particleCount: 120,
       spread: 70,
@@ -28,7 +23,6 @@ export function CtaBanner() {
       scalar: 1.1,
     });
 
-    // Effet "côtés"
     setTimeout(() => {
       confetti({
         particleCount: 60,
@@ -46,7 +40,6 @@ export function CtaBanner() {
       });
     }, 150);
 
-    // Ouvre WhatsApp après un petit délai
     setTimeout(() => {
       window.open(
         buildWhatsAppLink({
@@ -69,14 +62,10 @@ export function CtaBanner() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="relative overflow-hidden rounded-[40px] border border-ag-neon-500/20 bg-gradient-to-br from-ag-deep-800 via-ag-deep-900 to-ag-deep-950 p-10 sm:p-16"
         >
-          {/* ==== DÉCOR ==== */}
           <div aria-hidden className="pointer-events-none absolute inset-0">
-            {/* Grille */}
             <div className="absolute inset-0 bg-grid opacity-30" />
-            {/* Halo néon */}
             <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-ag-neon-500/20 blur-[100px]" />
             <div className="absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-ag-neon-400/15 blur-[100px]" />
-            {/* Orbes flottants */}
             <motion.div
               animate={{ y: [0, -14, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -89,32 +78,26 @@ export function CtaBanner() {
             />
           </div>
 
-          {/* ==== CONTENU ==== */}
           <div className="relative mx-auto max-w-3xl text-center">
-            {/* Badge */}
             <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-xs font-medium text-ag-neon-400">
-              <Sparkles className="h-3.5 w-3.5" />
+              <FaStar className="h-3.5 w-3.5" />
               Prêt à démarrer ?
             </span>
 
-            {/* Titre */}
             <h2 className="mt-6 text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">
               <span className="text-gradient-soft">Votre prochain succès</span>{" "}
               <span className="text-gradient-neon">commence maintenant</span>
             </h2>
 
-            {/* Sous-titre */}
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ag-muted sm:text-lg">
               Un expert AFRO GROUPE vous répond en moins de 2 heures sur WhatsApp.
               Devis gratuit, sans engagement.
             </p>
 
-            {/* Devise */}
             <p className="mt-4 text-sm italic text-ag-neon-400">
               « Chaque réussite commence par la volonté d&apos;essayer ! »
             </p>
 
-            {/* CTA */}
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button
                 variant="neon"
@@ -123,9 +106,9 @@ export function CtaBanner() {
                 onClick={fireConfetti}
                 icon={
                   confettiLoaded ? (
-                    <ArrowRight className="h-4 w-4" />
+                    <FaArrowRight className="h-4 w-4" />
                   ) : (
-                    <MessageCircle className="h-4 w-4" />
+                    <FaWhatsapp className="h-4 w-4" />
                   )
                 }
               >
@@ -137,13 +120,12 @@ export function CtaBanner() {
                 href="/services"
                 variant="outline"
                 size="lg"
-                icon={<ArrowRight className="h-4 w-4" />}
+                icon={<FaArrowRight className="h-4 w-4" />}
               >
                 Explorer nos services
               </Button>
             </div>
 
-            {/* Preuve sociale */}
             <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-ag-subtle">
               <span className="flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-ag-neon-500" />

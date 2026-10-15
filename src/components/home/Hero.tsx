@@ -1,24 +1,24 @@
 "use client";
 
 import * as React from "react";
-import { ArrowRight, MessageCircle, Sparkles, ShieldCheck, Globe2 } from "lucide-react";
+import {
+  FaArrowRight,
+  FaWhatsapp,
+  FaStar,
+  FaShieldAlt,
+  FaGlobe,
+} from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/whatsapp";
 import { countries } from "@/data/countries";
 
-/* ============================================================
-   STATS
-   ============================================================ */
 const STATS = [
-  { value: "5", label: "Pays hubs", icon: Globe2 },
-  { value: "500+", label: "Clients accompagnés", icon: Sparkles },
-  { value: "100%", label: "Achats sécurisés", icon: ShieldCheck },
+  { value: "5", label: "Pays hubs", icon: FaGlobe },
+  { value: "500+", label: "Clients accompagnés", icon: FaStar },
+  { value: "100%", label: "Achats sécurisés", icon: FaShieldAlt },
 ];
 
-/* ============================================================
-   ANIMATIONS
-   ============================================================ */
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -36,9 +36,6 @@ const itemVariants = {
   },
 };
 
-/* ============================================================
-   COMPOSANT
-   ============================================================ */
 export function Hero() {
   const whatsappHref = buildWhatsAppLink({
     message: WHATSAPP_MESSAGES.hero,
@@ -47,15 +44,10 @@ export function Hero() {
 
   return (
     <section className="relative isolate overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
-      {/* ==== DÉCOR DE FOND ==== */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        {/* Grille subtile */}
         <div className="absolute inset-0 bg-grid opacity-40" />
-        {/* Halo néon central */}
         <div className="absolute left-1/2 top-24 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-ag-neon-500/15 blur-[120px]" />
-        {/* Halo secondaire */}
         <div className="absolute right-0 top-1/2 h-72 w-72 rounded-full bg-ag-neon-400/10 blur-[100px]" />
-        {/* Vignette bas */}
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ag-deep-950 to-transparent" />
       </div>
 
@@ -65,7 +57,6 @@ export function Hero() {
         animate="visible"
         className="mx-auto max-w-6xl px-6 sm:px-8"
       >
-        {/* ==== BADGE ==== */}
         <motion.div variants={itemVariants} className="flex justify-center">
           <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-xs font-medium text-ag-muted">
             <span className="relative flex h-2 w-2">
@@ -76,7 +67,6 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* ==== TITRE ==== */}
         <motion.h1
           variants={itemVariants}
           className="mt-8 text-center text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
@@ -92,7 +82,6 @@ export function Hero() {
           </span>
         </motion.h1>
 
-        {/* ==== SOUS-TITRE ==== */}
         <motion.p
           variants={itemVariants}
           className="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-ag-muted sm:text-lg"
@@ -102,7 +91,6 @@ export function Hero() {
           L&apos;e-commerce international sans les mauvaises surprises.
         </motion.p>
 
-        {/* ==== DEVISE ==== */}
         <motion.p
           variants={itemVariants}
           className="mt-5 text-center text-sm italic text-ag-neon-400"
@@ -110,7 +98,6 @@ export function Hero() {
           « Chaque réussite commence par la volonté d&apos;essayer ! »
         </motion.p>
 
-        {/* ==== CTA ==== */}
         <motion.div
           variants={itemVariants}
           className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
@@ -123,7 +110,7 @@ export function Hero() {
             variant="neon"
             size="lg"
             glow
-            icon={<MessageCircle className="h-4 w-4" />}
+            icon={<FaWhatsapp className="h-4 w-4" />}
           >
             Démarrer mon projet
           </Button>
@@ -132,13 +119,12 @@ export function Hero() {
             href="#services"
             variant="outline"
             size="lg"
-            icon={<ArrowRight className="h-4 w-4" />}
+            icon={<FaArrowRight className="h-4 w-4" />}
           >
             Découvrir nos services
           </Button>
         </motion.div>
 
-        {/* ==== DRAPEAUX ==== */}
         <motion.div
           variants={itemVariants}
           className="mt-14 flex flex-wrap items-center justify-center gap-3"
@@ -158,7 +144,6 @@ export function Hero() {
           ))}
         </motion.div>
 
-        {/* ==== STATS ==== */}
         <motion.div
           variants={itemVariants}
           className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-3"

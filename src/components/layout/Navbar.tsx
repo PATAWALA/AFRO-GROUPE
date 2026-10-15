@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { FaBars, FaTimes, FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/whatsapp";
@@ -23,7 +23,6 @@ export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  // Détection du scroll pour changer le style
   React.useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
     handler();
@@ -31,12 +30,10 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  // Fermer le menu mobile au changement de route
   React.useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
 
-  // Bloquer le scroll quand le menu mobile est ouvert
   React.useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
@@ -65,7 +62,6 @@ export function Navbar() {
               : "bg-transparent border border-transparent"
           )}
         >
-          {/* ===== LOGO ===== */}
           <Link
             href="/"
             className="group flex items-center gap-2.5 shrink-0"
@@ -79,7 +75,6 @@ export function Navbar() {
             </span>
           </Link>
 
-          {/* ===== DESKTOP NAV ===== */}
           <ul className="hidden items-center gap-1 lg:flex">
             {NAV_ITEMS.map((item) => {
               const active =
@@ -113,7 +108,6 @@ export function Navbar() {
             })}
           </ul>
 
-          {/* ===== ACTIONS ===== */}
           <div className="flex items-center gap-2">
             <Button
               as="a"
@@ -122,13 +116,12 @@ export function Navbar() {
               rel="noopener noreferrer"
               variant="neon"
               size="sm"
-              icon={<MessageCircle className="h-3.5 w-3.5" />}
+              icon={<FaWhatsapp className="h-3.5 w-3.5" />}
               className="hidden sm:inline-flex"
             >
               WhatsApp
             </Button>
 
-            {/* Burger mobile */}
             <button
               onClick={() => setMobileOpen((v) => !v)}
               aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
@@ -136,16 +129,15 @@ export function Navbar() {
               className="flex h-10 w-10 items-center justify-center rounded-full text-ag-ink transition-colors hover:bg-white/5 lg:hidden"
             >
               {mobileOpen ? (
-                <X className="h-5 w-5" />
+                <FaTimes className="h-5 w-5" />
               ) : (
-                <Menu className="h-5 w-5" />
+                <FaBars className="h-5 w-5" />
               )}
             </button>
           </div>
         </nav>
       </header>
 
-      {/* ===== MOBILE MENU ===== */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -196,7 +188,7 @@ export function Navbar() {
                   rel="noopener noreferrer"
                   variant="neon"
                   size="lg"
-                  icon={<MessageCircle className="h-4 w-4" />}
+                  icon={<FaWhatsapp className="h-4 w-4" />}
                 >
                   Discuter sur WhatsApp
                 </Button>

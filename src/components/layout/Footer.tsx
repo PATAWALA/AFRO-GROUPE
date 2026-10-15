@@ -3,22 +3,18 @@
 import * as React from "react";
 import Link from "next/link";
 import {
-  Facebook,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Phone,
-  Send,
-} from "lucide-react";
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaWhatsapp,
+  FaPhone,
+  FaPaperPlane,
+} from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { buildWhatsAppLink, WHATSAPP_MESSAGES } from "@/lib/whatsapp";
-
-/* ============================================================
-   DONNÉES FOOTER
-   ============================================================ */
 
 const FOOTER_LINKS = {
   services: [
@@ -35,19 +31,12 @@ const FOOTER_LINKS = {
     { label: "Sourcing & Négociation", href: "/formations#sourcing" },
     { label: "Logistique Internationale", href: "/formations#logistique" },
   ],
-  pays: [
-    { label: "🇨🇳 Chine", href: "/#pays" },
-    { label: "🇹🇷 Turquie", href: "/#pays" },
-    { label: "🇳🇬 Nigéria", href: "/#pays" },
-    { label: "🇦🇪 Dubaï", href: "/#pays" },
-    { label: "🇫🇷 France", href: "/#pays" },
-  ],
 };
 
 const SOCIALS = [
-  { label: "Facebook", href: "https://facebook.com", icon: Facebook },
-  { label: "Instagram", href: "https://instagram.com", icon: Instagram },
-  { label: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
+  { label: "Facebook", href: "https://facebook.com", icon: FaFacebookF },
+  { label: "Instagram", href: "https://instagram.com", icon: FaInstagram },
+  { label: "LinkedIn", href: "https://linkedin.com", icon: FaLinkedinIn },
 ];
 
 const CONTACT = {
@@ -56,10 +45,6 @@ const CONTACT = {
   address: "Paris · Lagos · Dubaï · Guangzhou · Istanbul",
 };
 
-/* ============================================================
-   COMPOSANT
-   ============================================================ */
-
 export function Footer() {
   const [email, setEmail] = React.useState("");
   const [submitted, setSubmitted] = React.useState(false);
@@ -67,7 +52,6 @@ export function Footer() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    // TODO: brancher sur un vrai backend / Mailchimp
     setSubmitted(true);
     setEmail("");
     setTimeout(() => setSubmitted(false), 3500);
@@ -83,16 +67,13 @@ export function Footer() {
       id="contact"
       className="relative mt-32 rounded-t-[40px] border-t border-white/10 bg-gradient-to-b from-ag-deep-900 to-ag-deep-950 overflow-hidden"
     >
-      {/* Halo néon subtil */}
       <div
         aria-hidden
         className="pointer-events-none absolute -top-32 left-1/2 h-64 w-[600px] -translate-x-1/2 rounded-full bg-ag-neon-500/10 blur-[100px]"
       />
 
       <div className="relative mx-auto max-w-6xl px-6 pt-16 pb-8 sm:px-8 sm:pt-20">
-        {/* ===== GRID PRINCIPAL ===== */}
         <div className="grid gap-12 lg:grid-cols-12">
-          {/* --- Colonne Marque --- */}
           <div className="lg:col-span-4">
             <Link href="/" className="inline-flex items-center gap-3">
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-ag-neon-400 to-ag-neon-600 text-ag-deep-900 font-bold shadow-glow">
@@ -113,7 +94,6 @@ export function Footer() {
               « Chaque réussite commence par la volonté d&apos;essayer ! »
             </p>
 
-            {/* Réseaux */}
             <div className="mt-6 flex items-center gap-2">
               {SOCIALS.map(({ label, href, icon: Icon }) => (
                 <a
@@ -130,7 +110,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* --- Colonne Services --- */}
           <div className="lg:col-span-3">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-ag-neon-400">
               Services
@@ -149,7 +128,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* --- Colonne Formations + Pays --- */}
           <div className="lg:col-span-2">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-ag-neon-400">
               Formations
@@ -168,7 +146,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* --- Colonne Contact + Newsletter --- */}
           <div className="lg:col-span-3">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-ag-neon-400">
               Contact
@@ -176,7 +153,7 @@ export function Footer() {
 
             <ul className="mt-5 space-y-3 text-sm text-ag-muted">
               <li className="flex items-start gap-2.5">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-ag-neon-400" />
+                <FaEnvelope className="mt-0.5 h-4 w-4 shrink-0 text-ag-neon-400" />
                 <a
                   href={`mailto:${CONTACT.email}`}
                   className="hover:text-ag-ink transition-colors"
@@ -185,7 +162,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-ag-neon-400" />
+                <FaPhone className="mt-0.5 h-4 w-4 shrink-0 text-ag-neon-400" />
                 <a
                   href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}
                   className="hover:text-ag-ink transition-colors"
@@ -194,12 +171,11 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-ag-neon-400" />
+                <FaMapMarkerAlt className="mt-0.5 h-4 w-4 shrink-0 text-ag-neon-400" />
                 <span>{CONTACT.address}</span>
               </li>
             </ul>
 
-            {/* Newsletter */}
             <form onSubmit={handleSubmit} className="mt-6">
               <label
                 htmlFor="newsletter-email"
@@ -222,7 +198,7 @@ export function Footer() {
                   aria-label="S'inscrire à la newsletter"
                   className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-ag-neon-400 to-ag-neon-600 text-ag-deep-900 transition-transform hover:scale-105"
                 >
-                  <Send className="h-3.5 w-3.5" />
+                  <FaPaperPlane className="h-3.5 w-3.5" />
                 </button>
               </div>
               {submitted && (
@@ -243,7 +219,7 @@ export function Footer() {
               rel="noopener noreferrer"
               variant="outline"
               size="sm"
-              icon={<MessageCircle className="h-3.5 w-3.5" />}
+              icon={<FaWhatsapp className="h-3.5 w-3.5" />}
               className="mt-5"
             >
               WhatsApp direct
@@ -251,7 +227,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* ===== BOTTOM BAR ===== */}
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
           <p className="text-xs text-ag-subtle">
             © {new Date().getFullYear()} AFRO GROUPE. Tous droits réservés.

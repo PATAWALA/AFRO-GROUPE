@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { X } from "lucide-react";
+import { FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -22,7 +22,6 @@ export function Modal({
   children,
   className,
 }: ModalProps) {
-  // Escape pour fermer
   React.useEffect(() => {
     if (!isOpen) return;
     const handler = (e: KeyboardEvent) => {
@@ -32,7 +31,6 @@ export function Modal({
     return () => window.removeEventListener("keydown", handler);
   }, [isOpen, onClose]);
 
-  // Bloquer le scroll body
   React.useEffect(() => {
     if (!isOpen) return;
     const original = document.body.style.overflow;
@@ -46,7 +44,6 @@ export function Modal({
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          {/* Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -57,7 +54,6 @@ export function Modal({
             aria-hidden="true"
           />
 
-          {/* Panel */}
           <motion.div
             role="dialog"
             aria-modal="true"
@@ -71,16 +67,14 @@ export function Modal({
               className
             )}
           >
-            {/* Close */}
             <button
               onClick={onClose}
               aria-label="Fermer"
               className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-ag-muted transition-colors hover:bg-white/5 hover:text-ag-ink"
             >
-              <X className="h-4 w-4" />
+              <FaTimes className="h-4 w-4" />
             </button>
 
-            {/* Header */}
             {(title || description) && (
               <div className="mb-5 pr-10">
                 {title && (
@@ -97,7 +91,6 @@ export function Modal({
               </div>
             )}
 
-            {/* Content */}
             <div className="text-ag-ink">{children}</div>
           </motion.div>
         </div>
