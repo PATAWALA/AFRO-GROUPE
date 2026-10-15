@@ -5,7 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloating } from "@/components/ui/WhatsAppFloating";
 
-// ⬇️ Force le rendu dynamique (bypass le prerender statique)
+// ⬇️ Force le rendu dynamique (bypass le prerender statique Next.js 16)
 export const dynamic = "force-dynamic";
 
 const inter = Inter({
